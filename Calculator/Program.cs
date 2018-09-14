@@ -16,12 +16,13 @@ namespace Maths
         #region private attributes
         static private int userInputOperand01;
         static private int userInputOperand02;
-        static private int displayAddResult;
-        static private int displaySousResult;
-        static private int displayMultResult;
-        static private int displayDiviResult;
-        #endregion private attributes
+        static private char userInputOperateur;
+        static private int displayOPResult;
+        static private int i;
 
+
+        #endregion private attributes
+        Log Log = new Log();
         /// <summary>
         /// This function is designed to be application's entry point
         /// </summary>
@@ -30,32 +31,81 @@ namespace Maths
         {
             //ask user to input 2 operands
             //tant que la variable userInputOperand01 n'est pas numérique recommencer
-            Console.Write("First operand  : ");
-            try
+            do
             {
-                userInputOperand01 = int.Parse(Console.ReadLine());
-            }
-            catch(System.FormatException)
+                Console.Write("First operand  : ");
+                try
+                {
+                    i = 0;
+                    userInputOperand01 = int.Parse(Console.ReadLine());
+                }
+                catch (System.FormatException ex)
+                {
+                    i = 1;
+                    Console.Write("Error la valeur n'est pas numérique\n");
+                    Log.Logger(ex.ToString());
+                }
+            } while (i == 1);
+
+            do
             {
-                Console.Write("Error la valeur n'est pas numérique");
-            }
-
-            Console.Write("Second operand : ");
-            userInputOperand02 = int.Parse(Console.ReadLine());
-
+                Console.Write("Second operand  : ");
+                try
+                {
+                    i = 0;
+                    userInputOperand02 = int.Parse(Console.ReadLine());
+                }
+                catch (System.FormatException ex)
+                {
+                    i = 1;
+                    Console.Write("Error la valeur n'est pas numérique\n");
+                    Log.Logger(ex.ToString());
+                }
+            } while (i == 1);
+            do {
+                do {
+                    Console.Write("Choisir operateur : ");
+                    try
+                    {
+                        i = 0;
+                        userInputOperateur = char.Parse(Console.ReadLine());
+                    }
+                    catch (System.FormatException ex)
+                    {
+                        i = 1;
+                        Console.Write("Il faut choisir +, -, * ou /\n");
+                        Log.Logger(ex.ToString());
+                    }
+                } while (i == 1);
+                Calculator calculator = new Calculator();
+                switch (userInputOperateur) {
+                    case '+':
+                        i = 0;
+                        displayOPResult = calculator.add(userInputOperand01, userInputOperand02);
+                        break;
+                    case '-':
+                        i = 0;
+                        displayOPResult = calculator.sub(userInputOperand01, userInputOperand02);
+                        break;
+                    case '*':
+                        i = 0;
+                        displayOPResult = calculator.mul(userInputOperand01, userInputOperand02);
+                        break;
+                    case '/':
+                        i = 0;
+                        displayOPResult = calculator.div(userInputOperand01, userInputOperand02);
+                        break;
+                    default :
+                        i = 1;
+                        Console.Write("Il faut choisir +, -, * ou /\n");
+                        break;
+                }
+            } while (i==1);
             //declare, init and use a "calculator" object
-            Calculator calculator = new Calculator();
-            displayAddResult = calculator.add(userInputOperand01, userInputOperand02);
-            displaySousResult = calculator.sub(userInputOperand01, userInputOperand02);
-            displayMultResult = calculator.mul(userInputOperand01, userInputOperand02);
-            displayDiviResult = calculator.div(userInputOperand01, userInputOperand02);
 
             //display result
-            Console.Write("Result of " + userInputOperand01 + " + " + userInputOperand02 + " = " + displayAddResult + "\n");
-            Console.Write("Result of " + userInputOperand01 + " - " + userInputOperand02 + " = " + displaySousResult + "\n");
-            Console.Write("Result of " + userInputOperand01 + " * " + userInputOperand02 + " = " + displayMultResult + "\n");
-            Console.Write("Result of " + userInputOperand01 + " / " + userInputOperand02 + " = " + displayDiviResult + "\n");
-
+            Console.Write("Result of " + userInputOperand01 + " " + userInputOperateur + " " + userInputOperand02 + " = " + displayOPResult + "\n");
+            
             Console.ReadLine();
         }
     }
