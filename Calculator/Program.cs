@@ -62,8 +62,10 @@ namespace Maths
                     Log.Logger(ex.ToString());
                 }
             } while (i == 1);
-            do {
-                do {
+            do
+            {
+                do
+                {
                     Console.Write("Choisir operateur : ");
                     try
                     {
@@ -78,29 +80,19 @@ namespace Maths
                     }
                 } while (i == 1);
                 Calculator calculator = new Calculator();
-                switch (userInputOperateur) {
-                    case '+':
-                        i = 0;
-                        displayOPResult = calculator.add(userInputOperand01, userInputOperand02);
-                        break;
-                    case '-':
-                        i = 0;
-                        displayOPResult = calculator.sub(userInputOperand01, userInputOperand02);
-                        break;
-                    case '*':
-                        i = 0;
-                        displayOPResult = calculator.mul(userInputOperand01, userInputOperand02);
-                        break;
-                    case '/':
-                        i = 0;
-                        displayOPResult = calculator.div(userInputOperand01, userInputOperand02);
-                        break;
-                    default :
-                        i = 1;
-                        Console.Write("Il faut choisir +, -, * ou /\n");
-                        break;
+
+                try
+                {
+                    displayOPResult = calculator.Ope(userInputOperand01, userInputOperand02, userInputOperateur);
+                    i = 0;
                 }
-            } while (i==1);
+                catch (System.FormatException ex)
+                {
+                    i = 1;
+                    Console.Write("Il faut choisir +, -, * ou /\n");
+                    Log.Logger(ex.ToString());
+                }
+            } while (i == 1);
             //declare, init and use a "calculator" object
 
             //display result

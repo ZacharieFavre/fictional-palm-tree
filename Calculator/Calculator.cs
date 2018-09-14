@@ -8,20 +8,41 @@ namespace Maths
 {
     public class Calculator
     {
-        #region public methods
-        public int add(int op1, int op2)
+        public int Ope(int op1, int op2, char opr)
+        {
+            switch (opr)
+            {
+                case '+':
+                    return add(op1,op2);
+                    break;
+                case '-':
+                    return sub(op1,op2);
+                    break;
+                case '*':
+                    return mul(op1,op2);
+                    break;
+                case '/':
+                    return div(op1,op2);
+                    break;
+                default:
+                    throw new System.FormatException("not usable");
+                    break;
+            }
+        }
+        #region private methods
+        private int add(int op1, int op2)
         {
             return op1 + op2;
         }
-        public int sub(int op1,int op2)
+        private int sub(int op1,int op2)
         {
             return op1 - op2;
         }
-        public int mul(int op1, int op2)
+        private int mul(int op1, int op2)
         {
             return op1 * op2;
         }
-        public int div(int op1, int op2)
+        private int div(int op1, int op2)
         {
             if (op2 == 0)
             {
@@ -29,6 +50,6 @@ namespace Maths
             }
             else return op1 / op2;
         }
-        #endregion public methods
+        #endregion private methods
     }
 }

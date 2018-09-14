@@ -9,6 +9,7 @@ namespace Maths
         #region private attributes
         private int testOp1;
         private int testOp2;
+        private char testOpr;
         private int testExpectedResult;
         private int testActualResult;
         private Calculator testCalculator = null;
@@ -25,9 +26,10 @@ namespace Maths
             //given
             testOp1 = 6;
             testOp2 = 3;
+            testOpr = '+';
             testExpectedResult = 9;
             //when
-            testActualResult = testCalculator.add(testOp1, testOp2);
+            testActualResult = testCalculator.Ope(testOp1, testOp2, testOpr);
             //then
             Assert.AreEqual(testExpectedResult, testActualResult);
         }
@@ -37,9 +39,10 @@ namespace Maths
             //given
             testOp1 = 6;
             testOp2 = 3;
+            testOpr = '-';
             testExpectedResult = 3;
             //when
-            testActualResult = testCalculator.sub(testOp1, testOp2);
+            testActualResult = testCalculator.Ope(testOp1, testOp2, testOpr);
             //then
             Assert.AreEqual(testExpectedResult, testActualResult);
         }
@@ -49,9 +52,10 @@ namespace Maths
             //given
             testOp1 = 6;
             testOp2 = 3;
+            testOpr = '*';
             testExpectedResult = 18;
             //when
-            testActualResult = testCalculator.mul(testOp1, testOp2);
+            testActualResult = testCalculator.Ope(testOp1, testOp2, testOpr);
             //then
             Assert.AreEqual(testExpectedResult, testActualResult);
         }
@@ -61,9 +65,10 @@ namespace Maths
             //given
             testOp1 = 6;
             testOp2 = 0;
+            testOpr = '/';
             testExpectedResult = 0;
             //when
-            testActualResult = testCalculator.div(testOp1, testOp2);
+            testActualResult = testCalculator.Ope(testOp1, testOp2, testOpr); 
             //then
             Assert.AreEqual(testExpectedResult, testActualResult);
         }
